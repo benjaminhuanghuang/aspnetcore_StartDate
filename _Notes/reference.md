@@ -1,15 +1,6 @@
 # Reference 
-
-From Start to Finish: ASP.NET Core, Entity Framework Core and Visual Studio Code
-
-    https://www.youtube.com/watch?v=TZF46oPBHPc
-    
-
-.NET Core & EF Core - 1 - Creating Code First database model and using EF Migrations
-    https://www.youtube.com/watch?v=v8oPhVRGSpE
-
-
-
+Creating a .NET Core 1.1 MVC Web Application from scratch
+https://www.youtube.com/watch?v=9d6qJFVSbbw&t=44s
 
 
 

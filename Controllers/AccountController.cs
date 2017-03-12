@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 
+using StartDate.Models;
 using StartDate.Models.Identity;
 
 namespace StartDate.Controllers
@@ -30,7 +31,8 @@ namespace StartDate.Controllers
             if (ModelState.IsValid)
             {
                 ApplicationUser user = new ApplicationUser { UserName = model.Email, 
-                                                             Email = model.Email};
+                                                             Email = model.Email,
+                                                             Profile = new Profile()};
                 IdentityResult result = await _userManager.CreateAsync(user, model.Password );
 
                 if (result.Succeeded)
