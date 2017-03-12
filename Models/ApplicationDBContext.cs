@@ -4,7 +4,7 @@ using StartDate.Models.Identity;
 
 namespace StartDate.Models
 {
-    public class ApplicationDBContext : IdentityDbContext<>
+    public class ApplicationDBContext : IdentityDbContext<ApplicationUser>
     {
 
     }

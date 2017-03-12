@@ -1,6 +1,6 @@
 {
   "json": "bower.json",
-  "directory": "wwwroot/bower_components/",
+  "directory": "wwwroot/bower_components",
   "timeout": 120000,
   "registry": {
     "search": [

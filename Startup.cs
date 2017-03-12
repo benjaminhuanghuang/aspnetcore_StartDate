@@ -39,14 +39,15 @@ namespace StartDate
             // Add Identity
             services.AddIdentity<ApplicationUser, IdentityRole>().
                 AddEntityFrameworkStores<ApplicationDBContext>();
-
+            
             // Create connection
             var conn = @"server=(localdb)\\mssqllocaldb;Database=StarDate;User Id=sa;Password=ben123;";
             services.AddDbContext<ApplicationDBContext>(options => options.UseSqlServer(conn));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, 
+                              ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
