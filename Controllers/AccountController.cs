@@ -29,8 +29,9 @@ namespace StartDate.Controllers
         {
             if (ModelState.IsValid)
             {
-                ApplicationUser user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                IdentityResult result = await _userManager.CreateAsync(user);
+                ApplicationUser user = new ApplicationUser { UserName = model.Email, 
+                                                             Email = model.Email};
+                IdentityResult result = await _userManager.CreateAsync(user, model.Password );
 
                 if (result.Succeeded)
                 {
