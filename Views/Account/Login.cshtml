@@ -1,11 +1,6 @@
-@model StartDate.Models.Identity.LoginViewModel
-@addTagHelper*, Microsoft.AspNetCore.Mvc.TagHelpers
+ @model LoginViewModel
 
-@{
-    Layout = "_Layout";
-}
-
-<form class="form-horizontal" asp-controller="Account" asp-action="Login" method="post">
+ <form class="form-horizontal" asp-controller="Account" asp-action="Login" method="post">
     <h4> Login </h4>
     <div asp-validation-summary="All" class="text-danger"></div>
   <div class="form-group">
