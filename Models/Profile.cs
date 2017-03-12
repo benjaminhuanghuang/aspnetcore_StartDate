@@ -11,10 +11,17 @@ namespace StartDate.Models
         Regular,
         Heavy
     }
+
+    public enum Gender{
+        Male,
+        Female
+    }
     public class Profile
     {
         public int Id { get; set; }
 
+        public Gender Gender{get; set;}
+        
         [DisplayAttribute(Name="Display Name")]
         public string DisplayName { get; set; }
         
