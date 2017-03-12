@@ -26,3 +26,8 @@ $ docker pull microsoft/mssql-server-linux
 
 ### Run sql image
 $ docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=ben123' -p 1433:1433 -d microsoft/mssql-server-linux
+$ docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=ben123' -p 1433:1433 microsoft/mssql-server-linux
+$ docker run  -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=sqlben1234" -ti -p 1433:1433 microsoft/mssql-server-linux
+## Use sql client
+$ npm install -g sql-cli
+$ mssql -u sa -p P@55w0rd
