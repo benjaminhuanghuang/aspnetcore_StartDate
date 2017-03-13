@@ -1,6 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
-
+using System.ComponentModel.DataAnnotations.Schema;
 using StartDate.Models.Identity;
 
 namespace StartDate.Models
@@ -16,6 +16,8 @@ namespace StartDate.Models
         Male,
         Female
     }
+    
+    //[Table("Profile")]
     public class Profile
     {
         public int Id { get; set; }

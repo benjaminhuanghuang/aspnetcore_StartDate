@@ -74,7 +74,7 @@ namespace StartDate.Controllers
                          {
                             Description = p.Description,
                             Id = p.Id,
-                            ProfilePicture = $"(p.User.Id)/(p.ProfilePicture)",
+                            ProfilePicture = $"{p.User.Id}/{p.ProfilePicture}",
                             Gender = p.Gender,  
                             Smoking = p.Smoking,
                             Occupation = p.Occupation,
@@ -106,21 +106,24 @@ namespace StartDate.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryTokenAttribute]
-        public async Task<IActionResult> Edit([BindAttribute("Id, DisplayName, Birthday, Height, Description, Occupation, ProfilePicture, Smoking, ProfilePicture")] Profile profile, IFormFile profilePicutureFile)
+        // Because "ProfilePictureFile" is not a field of model profile, we need add a parameter for it.
+        // The name of the parameter should be the same of the html filed and case sensitive!
+        public async Task<IActionResult> Edit([BindAttribute("Id, DisplayName, Birthday, Height, Description, Occupation, ProfilePicture, Smoking, ProfilePictureFile")] Profile profile, IFormFile ProfilePictureFile)
         {
             if (ModelState.IsValid)
             {
                 ApplicationUser currUser = await _userManager.GetUserAsync(User);
-                if (profilePicutureFile != null)
+                
+                if (ProfilePictureFile != null)  //Upload pic
                 {
                     string uploadPath = Path.Combine(_enviroment.WebRootPath, "uploads");
                     string userPath = Path.Combine(uploadPath, currUser.Id);
                     Directory.CreateDirectory(userPath);
 
-                    string fileName = Path.GetFileName(profilePicutureFile.FileName);
+                    string fileName = Path.GetFileName(ProfilePictureFile.FileName);
                     using(FileStream fs = new FileStream(Path.Combine(userPath, fileName),FileMode.Create))
                     {
-                        await profilePicutureFile.CopyToAsync(fs);
+                        await ProfilePictureFile.CopyToAsync(fs);
                     }
                     profile.ProfilePicture = fileName;
                 }

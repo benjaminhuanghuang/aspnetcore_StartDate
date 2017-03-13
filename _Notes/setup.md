@@ -32,3 +32,10 @@ And tools in .csproj
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools" Version="1.1.0" />
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="1.0.0" />
 </ItemGroup>
+
+
+$ dotnet ef database drop        # drop database
+$ dotnet ef database update      # update database
+$ dotnet ef migrations update
+$ dotnet ef migrations add <migration name>
+

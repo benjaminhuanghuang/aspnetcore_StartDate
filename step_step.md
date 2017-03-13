@@ -14,6 +14,8 @@ https://www.youtube.com/watch?v=g1nJBtKzz7w&list=PL7u53lOSm0rxzkpOsswWZS4SzhODce
 ### Inject auth checking into pages
      Modify _Layout.cshtml
      Display / Show menu 
+### Upload image
+    
 
 ## Create ViewModel
 

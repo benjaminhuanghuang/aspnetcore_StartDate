@@ -8,6 +8,7 @@
     <h4>Profile</h4>
     <hr/>
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Id"/>
     <div class="form-group">
         <label asp-for="DisplayName" class="col-md-2 control-label"></label>
         <div class="col-md-10">
@@ -40,7 +41,7 @@
     <div class="form-group">
         <label asp-for="Description" class="col-md-2 control-label"></label>
         <div class="col-md-10">
-            <textarea asp-for="Description" class="form-control"></textarea>
+            <textarea asp-for="Description" class="form-control"></textarea >
             <span asp-validation-for="Description" class="text-danger"></span>
         </div>
     </div>
@@ -54,7 +55,7 @@
     <div class="form-group">
         <label asp-for="ProfilePicture" class="col-md-2 control-label"></label>
         <div class="col-md-10">
-            <img src="~/uploads/@Model.User.Id/@Model.ProfilePicture"class="profile-picture"/> 
+            <img src="~/uploads/@Model.User.Id/@Model.ProfilePicture" class="profile-picture"/> 
             <input type="hidden" asp-for="ProfilePicture" />
         </div>
     </div>
@@ -80,3 +81,6 @@
      </div>
 </div>
 </form>
+<div>
+    <a asp-action="Index"> Back to Home</a>
+    </div>
