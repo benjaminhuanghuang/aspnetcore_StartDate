@@ -5,3 +5,11 @@ body {
   padding: 40px 15px;
   text-align: center;
 }
+
+.profile-picture{
+  display: block;
+  max-width:200px;
+  max-height: 200px;
+  width:auto;
+  height: auto;
+}

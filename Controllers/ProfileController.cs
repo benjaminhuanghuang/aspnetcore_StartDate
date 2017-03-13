@@ -1,3 +1,6 @@
+using System.IO;   // For file upload
+using Microsoft.AspNetCore.Http;   // For file upload
+using Microsoft.AspNetCore.Hosting;  // For file upload
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
@@ -8,6 +11,7 @@ using Microsoft.AspNetCore.Identity;
 using StartDate.Models;
 using StartDate.Models.Identity;
 
+
 namespace StartDate.Controllers
 {
     public class ProfileController : Controller
@@ -15,10 +19,15 @@ namespace StartDate.Controllers
         private readonly ApplicationDBContext _context;
         private UserManager<ApplicationUser> _userManager;
 
-        public ProfileController(ApplicationDBContext context, UserManager<ApplicationUser> userManager)
+        private IHostingEnvironment _enviroment;
+
+        public ProfileController(ApplicationDBContext context, 
+                                    UserManager<ApplicationUser> userManager,
+                                    IHostingEnvironment enviroment)
         {
             _context = context;
             _userManager = userManager;
+            _enviroment = enviroment;
         }
 
         public async Task<IActionResult> Details(int? id)
@@ -43,27 +52,26 @@ namespace StartDate.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryTokenAttribute]
-        public async Task<IActionResult> Edit([BindAttribute("Id, DisplayName, Birthday, Height, Description, Occupation, ProfilePicture, Smoking")] Profile profile)
+        public async Task<IActionResult> Edit([BindAttribute("Id, DisplayName, Birthday, Height, Description, Occupation, ProfilePicture, Smoking, ProfilePicture")] Profile profile, IFormFile profilePicutureFile)
         {
             if (ModelState.IsValid)
             {
-                try
+                ApplicationUser currUser = await _userManager.GetUserAsync(User);
+                if (profilePicutureFile != null)
                 {
-                    _context.Update(profile);
-                    await _context.SaveChangesAsync();
+                    string uploadPath = Path.Combine(_enviroment.WebRootPath, "uploads");
+                    string userPath = Path.Combine(uploadPath, currUser.Id);
+                    Directory.CreateDirectory(userPath);
+
+                    string fileName = Path.GetFileName(profilePicutureFile.FileName);
+                    using(FileStream fs = new FileStream(Path.Combine(userPath, fileName),FileMode.Create))
+                    {
+                        await profilePicutureFile.CopyToAsync(fs);
+                    }
+                    profile.ProfilePicture = fileName;
                 }
-                catch (DbUpdateException)
-                {
-                    // if (!ProfileExists(profile.Id))
-                    // {
-                    //     return NotFound();
-                    // }
-                    // else
-                    // {
-                    //     throw;
-                    // }
-                }
-                return RedirectToAction("Index");
+                _context.Update(profile);
+                await _context.SaveChangesAsync();
             }
             return View(profile);
         }
