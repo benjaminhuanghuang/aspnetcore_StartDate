@@ -18,7 +18,7 @@ namespace StartDate
                 .UseStartup<Startup>()
                 .Build();
 
-            host.Run();
+             host.Run();
         }
     }
 }
