@@ -81,8 +81,7 @@ namespace StartDate.Controllers
                             DisplayName = p.DisplayName,
                             Height = p.Height,
                             Age = calculateAge(p.Birthday)
-                         }).ToList(); 
-                             
+                         }).ToList();               
             }
 
             return View("Result", result); //show result in "Result" view
