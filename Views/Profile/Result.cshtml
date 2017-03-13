@@ -1,0 +1,25 @@
+@model IEnumerable<StartDate.Models.ProfileSearchResultViewModel>
+
+@{
+    ViewData["Title"] = "Search Result"
+}
+
+<h2>Search Result</h2>
+foreach (var item in Model)
+{
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">@Html.DisplayFor(model=>model.DisplayNme) - @Html.DisplayFor(model=>model.Age) - @Html.DisplayFor(model=>model.Occupation)</h3>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-8">
+                @Html.DisplayFor(model=>model.Description)
+            </div>
+            <div class="col-md-4">
+                <img src="~/uploads/@item.ProfilePicture" class="profie-picture"/>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,82 @@
+@model StartDate.Models.ProfileSearchViewModel
+@{
+    ViewData["Title"] = "Search" 
+}
+<form asp-action="Edit" enctype="multipart/form-data">
+    <div class="form-horizontal">
+    <h4>Find your match</h4>
+    <hr/>
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="DisplayName" class="col-md-2 control-label"></label>
+        <div class="clo-md-10">
+            <input asp-for="DisplayName" class="form-control"/>
+            <span asp-validation-for="DisplayName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Gender" class="col-md-2 control-label"></label>
+        <div class="clo-md-10">
+            <select asp-for="Gender" class="form-control" asp-items="Html.GetEnumSelectList<StartDate.Model.Gender>()">
+            </select>
+            <span asp-validation-for="Gender" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Birthday" class="col-md-2 control-label"></label>
+        <div class="clo-md-10">
+            <input asp-for="Birthday" class="form-control"/>
+            <span asp-validation-for="Birthday" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Height" class="col-md-2 control-label"></label>
+        <div class="clo-md-10">
+            <input asp-for="Height" class="form-control"/>
+            <span asp-validation-for="Height" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description" class="col-md-2 control-label"></label>
+        <div class="clo-md-10">
+            <textarea asp-for="Description" class="form-control"/>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Occupation" class="col-md-2 control-label"></label>
+        <div class="clo-md-10">
+            <input asp-for="Occupation" class="form-control"/>
+            <span asp-validation-for="Occupation" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ProfilePicture" class="col-md-2 control-label"></label>
+        <div class="clo-md-10">
+            <img src="~/uploads/@Model.User.Id/@Model.ProfilePicture"class="profile-picture"/> 
+            <input type="hidden" asp-for="ProfilePicture" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label  class="col-md-2 control-label"></label>
+        <div class="clo-md-10">
+            <input type="file" name="ProfilePictureFile"/>
+            <span asp-validation-for="ProfilePicture" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Smoking" class="col-md-2 control-label"></label>
+        <div class="clo-md-10">
+            <select asp-for="Smoking" class="form-control" asp-items="Html.GetEnumSelectList<StartDate.Model.SmokerType>()">
+            </select>
+            <span asp-validation-for="Smoking" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="clo-md-offset-2 col-md-10">
+            <input type="submit" value="search" class= "btn btn-default"/>
+        </div>
+     </div>
+    </div>
+</form> 

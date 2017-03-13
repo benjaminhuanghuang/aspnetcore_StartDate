@@ -1,3 +1,4 @@
+using System;
 using System.IO;   // For file upload
 using Microsoft.AspNetCore.Http;   // For file upload
 using Microsoft.AspNetCore.Hosting;  // For file upload
@@ -43,6 +44,60 @@ namespace StartDate.Controllers
             }
             return View(profile);
         }
+
+        public IActionResult Search()
+        {
+            ProfileSearchViewModel vm = new ProfileSearchViewModel();
+            vm.MinAge = 18;
+            vm.MaxAge = 85;
+
+            return View(vm);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryTokenAttribute]
+        public IActionResult Search(ProfileSearchViewModel vm)
+        {
+            List<ProfileSearchResultViewModel> result = new List<ProfileSearchResultViewModel>();
+
+            if (ModelState.IsValid)
+            {
+                DateTime minDate = DateTime.Today.AddYears(-vm.MaxAge);
+                DateTime maxDate = DateTime.Today.AddYears(-vm.MinAge);
+                
+                result = (from p in _context.Profiles
+                         where p.Gender == vm.Gender
+                             &&p.Height > vm.MinHeight && p.Height < vm.MaxHeight
+                             &&p.Birthday > minDate && p.Birthday < maxDate
+                             && (!vm.NoSmoking|| (vm.NoSmoking && p.Smoking==SmokerType.No))
+                         select new ProfileSearchResultViewModel
+                         {
+                            Description = p.Description,
+                            Id = p.Id,
+                            ProfilePicture = $"(p.User.Id)/(p.ProfilePicture)",
+                            Gender = p.Gender,  
+                            Smoking = p.Smoking,
+                            Occupation = p.Occupation,
+                            DisplayName = p.DisplayName,
+                            Height = p.Height,
+                            Age = calculateAge(p.Birthday)
+                         }).ToList(); 
+                             
+            }
+
+            return View("Result", result); //show result in "Result" view
+        }
+
+        private int calculateAge(DateTime birthDate)
+        {
+            int age = DateTime.Today.Year - birthDate.Year;
+            if (birthDate > DateTime.Today.AddYears(-age))
+            {
+                age --;
+            }
+            return age;
+        }
+
         public async Task<IActionResult> Edit()
         {
             ApplicationUser currUser = await _userManager.GetUserAsync(User);
