@@ -12,6 +12,6 @@
 How to run
 ----------------------
 1. start the mssql docker
-    
+    sa/
 
 2. $ dotnet run
