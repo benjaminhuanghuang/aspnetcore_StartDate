@@ -2,8 +2,8 @@
     https://www.youtube.com/watch?v=y_J8geOgO-Y&list=PL7u53lOSm0rxzkpOsswWZS4SzhODcex-F
 
 ## Points
-    * ASP.NET Core 1.1
-    * EF, Migration
+    * ASP.NET Core 1.1, ViewModel
+    * EF, Migration, Models
     * Identity
     * MS SQL
     * Docker
