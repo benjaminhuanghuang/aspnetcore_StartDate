@@ -35,8 +35,13 @@ And tools in .csproj
 </ItemGroup>
 ```
 
+## Add model and update database
 $ dotnet ef database drop        # drop database
 $ dotnet ef database update      # update database
 $ dotnet ef migrations update
 $ dotnet ef migrations add <migration name>
 
+ $ dotnet ef migrations add Profile
+ Because user has a profile as FK, we need remove all existed user before update database
+
+ $ ef migrations remove  # Undo action  

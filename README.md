@@ -32,10 +32,12 @@ add js fine into _Layout.cshtml
 
 ## ViewStart an ViewImport
 
-## Add model and update database
- $ dotnet ef migrations add Profile
- $ dotnet ef database update 
- Because user has a profile as FK, we need remove all existed user before update database
+## Creating a .NET Core 1.1 MVC Web Application from scratch
+    https://www.youtube.com/watch?v=y_J8geOgO-Y&list=PL7u53lOSm0rxzkpOsswWZS4SzhODcex-F
 
- $ ef migrations remove  # Undo action  
-
+## Using
+    * ASP.NET Core 1.1
+    * EF, Migration
+    * Identity
+    * MS SQL
+    * Docker
