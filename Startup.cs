@@ -34,7 +34,7 @@ namespace StartDate
         public void ConfigureServices(IServiceCollection services)
         {
             // Create connection
-            var conn = @"server=127.0.0.1;Database=StartDate;User Id=sa;Password=Ben#1234";
+            var conn = @"server=127.0.0.1;Database=StartDate;User Id=sa;Password=Sql@1433";
             services.AddDbContext<ApplicationDBContext>(options => options.UseSqlServer(conn));
      
             // Add Identity

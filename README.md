@@ -11,7 +11,15 @@
 
 How to run
 ----------------------
-1. start the mssql docker
-    sa/
+1. Start the mssql docker
+    $ docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Sql@1433' -p 1433:1433 -d microsoft/mssql-server-linux
 
-2. $ dotnet run
+2. Recover databas
+    $dotnet ef database update
+
+3. Start app
+    $ dotnet run
+
+4. Login
+    test@gmail.com/
+    Test1234

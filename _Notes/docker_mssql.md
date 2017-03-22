@@ -23,9 +23,9 @@ https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-setup-docker
     $ docker pull microsoft/mssql-server-linux
 
 * Run sql image
-    $ docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Ben#1234' -p 1433:1433 -d microsoft/mssql-server-linux
-    $ docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Ben#1234' -p 1433:1433 microsoft/mssql-server-linux
-    $ docker run  -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=sqlben1234" -ti -p 1433:1433 microsoft/mssql-server-linux
+    $ docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Sql@1433' -p 1433:1433 -d microsoft/mssql-server-linux
+    $ docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Sql@1433' -p 1433:1433 microsoft/mssql-server-linux
+    $ docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Sql@1433" -ti -p 1433:1433 microsoft/mssql-server-linux
 
 
 Microsoft(R) SQL Server(R) setup failed with error code 1. Please check the setup log in /var/opt/mssql/log for more information.
@@ -34,4 +34,11 @@ Microsoft(R) SQL Server(R) setup failed with error code 1. Please check the setu
 
 ## Use sql client
     $ npm install -g sql-cli
-    $ mssql -u sa -p Ben#1234
+    $ mssql -u sa -p Sql@1433
+
+## Query
+    # List all db
+    mssql> sp_databases
+
+    # List all table
+    mssql> use StartDate
