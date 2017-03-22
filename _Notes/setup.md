@@ -27,12 +27,13 @@ Add dependency in .csproj (.net core 1.1)
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Design" Version= "1.1.1"/>
 
 And tools in .csproj
+```xml
 <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Design" Version="1.1.1" />
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools" Version="1.1.0" />
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="1.0.0" />
 </ItemGroup>
-
+```
 
 $ dotnet ef database drop        # drop database
 $ dotnet ef database update      # update database
