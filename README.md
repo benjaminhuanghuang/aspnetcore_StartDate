@@ -8,3 +8,10 @@
     * MS SQL
     * Docker
     * Image Upload
+
+How to run
+----------------------
+1. start the mssql docker
+    
+
+2. $ dotnet run
